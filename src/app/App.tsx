@@ -42,7 +42,7 @@ function CTAButton({
       href="https://hotmart.com"
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-block bg-accent text-accent-foreground font-black uppercase tracking-wider transition-all duration-150 hover:brightness-110 active:scale-[0.98] cursor-pointer select-none ${sizes[size]} ${fullWidth ? "w-full text-center" : ""}`}
+      className={`inline-block bg-accent text-accent-foreground font-black uppercase tracking-wider transition-all duration-150 hover:brightness-110 active:scale-[0.98] cursor-pointer select-none ${sizes[size]} ${fullWidth ? "w-full text-center" : ""} hover:animate-pulse`}
       style={{ fontFamily: FONT_DISPLAY, letterSpacing: "0.07em", minHeight: "50px" }}
     >
       {children}
@@ -157,13 +157,35 @@ const yesNeeds = [
 
 export default function App() {
   const [showSticky, setShowSticky] = useState(false);
+  const [visibleSections, setVisibleSections] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     const handler = () => {
       setShowSticky(window.scrollY > window.innerHeight * 0.88);
     };
     window.addEventListener("scroll", handler, { passive: true });
-    return () => window.removeEventListener("scroll", handler);
+    
+    // Scroll-triggered animations
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setVisibleSections(prev => ({
+            ...prev,
+            [entry.target.id]: entry.isIntersecting
+          }));
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    document.querySelectorAll('[id^="section-"]').forEach((el) => {
+      observer.observe(el);
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handler);
+      observer.disconnect();
+    };
   }, []);
 
   return (
@@ -199,7 +221,7 @@ export default function App() {
         <div className="relative z-10 max-w-xl mx-auto w-full lg:max-w-4xl">
           {/* Tag */}
           <div
-            className="inline-block mb-7 px-3 py-1 border border-primary/50 text-primary text-xs uppercase tracking-[0.18em] font-semibold"
+            className="inline-block mb-7 px-3 py-1 border border-primary/50 text-primary text-xs uppercase tracking-[0.18em] font-semibold animate-fade-in-up"
             style={{ fontFamily: FONT_DISPLAY }}
           >
             Digital Guide · Work in Australia
@@ -207,7 +229,7 @@ export default function App() {
 
           {/* Headline */}
           <h1
-            className="font-black uppercase leading-[0.92] text-white mb-7"
+            className="font-black uppercase leading-[0.92] text-white mb-7 animate-fade-in-up animate-delay-150"
             style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3.5rem, 14vw, 8rem)" }}
           >
             YOUR LIFE<br />
@@ -216,27 +238,27 @@ export default function App() {
           </h1>
 
           {/* Sub */}
-          <p className="text-white/75 mb-10 max-w-lg leading-relaxed" style={{ fontSize: "1.125rem" }}>
+          <p className="text-white/75 mb-10 max-w-lg leading-relaxed animate-fade-in-up animate-delay-300" style={{ fontSize: "1.125rem" }}>
             Work in mining and heavy machinery in Australia.{" "}
             <strong className="text-white">No university degree required.</strong> Salaries up to{" "}
             <strong className="text-primary">120,000 AUD</strong> per year.
           </p>
 
           {/* CTA row */}
-          <div className="flex flex-col sm:flex-row gap-5 items-start">
-            <CTAButton size="lg">GET THE GUIDE — €47</CTAButton>
-            <div className="flex items-center gap-2 text-white/45 text-sm self-center">
-              <Shield size={14} className="text-primary shrink-0" />
-              <span>Instant access · 30-day guarantee</span>
+            <div className="flex flex-col sm:flex-row gap-5 items-start animate-fade-in-up animate-delay-500">
+              <CTAButton size="lg" className="animate-pulse hover:scale-105 transition-transform">GET THE GUIDE — €47</CTAButton>
+              <div className="flex items-center gap-2 text-white/45 text-sm self-center group cursor-default">
+                <Shield size={14} className="text-primary shrink-0 group-hover:scale-110 transition-transform" />
+                <span className="group-hover:text-white/70 transition-colors">Instant access · 30-day guarantee</span >
+              </div>
             </div>
-          </div>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════
           2. PROBLEMA → SOLUCIÓN
       ═══════════════════════════════════════════ */}
-      <section className="py-24 md:py-32 px-6 md:px-12 lg:px-20 bg-background">
+      <section id="section-problem-solution" className="py-24 md:py-32 px-6 md:px-12 lg:px-20 bg-background">
         <div className="max-w-xl mx-auto lg:max-w-4xl space-y-16">
 
           {/* Pain */}
@@ -269,30 +291,30 @@ export default function App() {
           </div>
 
           {/* Solution */}
-          <div className="grid md:grid-cols-2 gap-10 items-center">
-            <div>
-              <Label>The twist</Label>
-              <h3
-                className="font-black uppercase leading-tight text-white mb-5"
-                style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2rem, 6vw, 3rem)" }}
-              >
-                Australia doesn't ask for{" "}
-                <span className="text-primary">degrees.</span><br />
-                It asks for skills.
-              </h3>
-              <p className="text-white/65 leading-relaxed" style={{ fontSize: "1.0625rem" }}>
-                The Australian mining industry hires thousands of operators every year. They don't care if you have a master's degree. They care if you can run the machine and want to work.
-              </p>
-            </div>
-            <div className="relative overflow-hidden bg-secondary">
-              <img
-                src={IMG_OUTBACK}
-                alt="Open Australian landscape seen from the air"
-                className="w-full h-60 md:h-72 object-cover"
-              />
-              <div className="absolute inset-0 bg-primary/10" />
-            </div>
-          </div>
+           <div className="grid md:grid-cols-2 gap-10 items-center">
+             <div className="animate-fade-in-up">
+               <Label>The twist</Label>
+               <h3
+                 className="font-black uppercase leading-tight text-white mb-5"
+                 style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2rem, 6vw, 3rem)" }}
+               >
+                 Australia doesn't ask for{" "}
+                 <span className="text-primary">degrees.</span><br />
+                 It asks for skills.
+               </h3>
+               <p className="text-white/65 leading-relaxed" style={{ fontSize: "1.0625rem" }}>
+                 The Australian mining industry hires thousands of operators every year. They don't care if you have a master's degree. They care if you can run the machine and want to work.
+               </p>
+             </div>
+             <div className="relative overflow-hidden bg-secondary animate-fade-in-down">
+               <img
+                 src={IMG_OUTBACK}
+                 alt="Open Australian landscape seen from the air"
+                 className="w-full h-60 md:h-72 object-cover hover:scale-110 transition-transform duration-700"
+               />
+               <div className="absolute inset-0 bg-primary/10" />
+             </div>
+           </div>
         </div>
       </section>
 
@@ -303,34 +325,35 @@ export default function App() {
         <div className="max-w-xl mx-auto lg:max-w-4xl">
           <Label>Why it works</Label>
           <h2
-            className="font-black uppercase leading-tight text-white mb-14"
+            className="font-black uppercase leading-tight text-white mb-14 animate-fade-in-up"
             style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.2rem, 7vw, 3.5rem)" }}
           >
             What you get<br />with this guide
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {benefits.map((b, i) => (
-              <div
-                key={i}
-                className="bg-background border border-border p-8 group hover:border-primary/40 transition-colors duration-200"
-              >
-                <div className="text-primary mb-5">{b.icon}</div>
-                <p
-                  className="text-muted-foreground text-[11px] uppercase tracking-[0.18em] mb-2 font-semibold"
-                  style={{ fontFamily: FONT_DISPLAY }}
-                >
-                  {b.label}
-                </p>
-                <p
-                  className="text-white font-black uppercase mb-3"
-                  style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.5rem, 4vw, 2rem)" }}
-                >
-                  {b.figure}
-                </p>
-                <p className="text-white/55 leading-relaxed text-[0.9375rem]">{b.desc}</p>
-              </div>
-            ))}
+             {benefits.map((b, i) => (
+               <div
+                 key={i}
+                 className="bg-background border border-border p-8 group hover:border-primary/40 transition-all duration-300 animate-scale-in"
+                 style={{ animationDelay: `${i * 100}ms` }}
+               >
+                 <div className="text-primary mb-5 group-hover:scale-110 transition-transform">{b.icon}</div>
+                 <p
+                   className="text-muted-foreground text-[11px] uppercase tracking-[0.18em] mb-2 font-semibold"
+                   style={{ fontFamily: FONT_DISPLAY }}
+                 >
+                   {b.label}
+                 </p>
+                 <p
+                   className="font-black uppercase mb-3"
+                   style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.5rem, 4vw, 2rem)" }}
+                 >
+                   {b.figure}
+                 </p>
+                 <p className="text-white/55 leading-relaxed text-[0.9375rem]">{b.desc}</p>
+               </div>
+             ))}
           </div>
         </div>
       </section>
@@ -338,7 +361,7 @@ export default function App() {
       {/* ═══════════════════════════════════════════
           4. QUÉ APRENDERÁS
       ═══════════════════════════════════════════ */}
-      <section className="py-24 md:py-32 px-6 md:px-12 lg:px-20 bg-background">
+      <section id="section-content" className="py-24 md:py-32 px-6 md:px-12 lg:px-20 bg-background">
         <div className="max-w-xl mx-auto lg:max-w-4xl">
           <Label>The content</Label>
           <h2
@@ -348,32 +371,33 @@ export default function App() {
             What you'll learn<br />in the guide
           </h2>
 
-          <div>
-            {steps.map((s, i) => (
-              <div
-                key={i}
-                className="flex gap-6 md:gap-10 py-8 border-b border-border group last:border-0"
-              >
-                <div
-                  className="text-[3.5rem] md:text-[4.5rem] font-black leading-none text-white/8 shrink-0 w-14 md:w-20 group-hover:text-primary/20 transition-colors duration-200 select-none"
-                  style={{ fontFamily: FONT_DISPLAY }}
-                >
-                  {s.num}
-                </div>
-                <div className="flex-1 pt-1">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-primary">{s.icon}</span>
-                    <h3
-                      className="text-white font-black uppercase"
-                      style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.1rem, 3.5vw, 1.4rem)" }}
-                    >
-                      {s.title}
-                    </h3>
-                  </div>
-                  <p className="text-white/55 leading-relaxed text-[0.9375rem]">{s.desc}</p>
-                </div>
-              </div>
-            ))}
+          <div className="animate-fade-in-up animate-delay-100">
+             {steps.map((s, i) => (
+               <div
+                 key={i}
+                 className="flex gap-6 md:gap-10 py-8 border-b border-border group last:border-0 animate-fade-in-up"
+                 style={{ animationDelay: `${i * 150}ms` }}
+               >
+                 <div
+                   className="text-[3.5rem] md:text-[4.5rem] font-black leading-none text-white/8 shrink-0 w-14 md:w-20 group-hover:text-primary transition-colors duration-300 select-none"
+                   style={{ fontFamily: FONT_DISPLAY }}
+                 >
+                   {s.num}
+                 </div>
+                 <div className="flex-1 pt-1">
+                   <div className="flex items-center gap-3 mb-2">
+                     <span className="text-primary group-hover:scale-110 transition-transform duration-300">{s.icon}</span>
+                     <h3
+                       className="text-white font-black uppercase"
+                       style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(1.1rem, 3.5vw, 1.4rem)" }}
+                     >
+                       {s.title}
+                     </h3>
+                   </div>
+                   <p className="text-white/55 leading-relaxed text-[0.9375rem]">{s.desc}</p>
+                 </div>
+               </div>
+             ))}
           </div>
         </div>
       </section>
@@ -381,7 +405,7 @@ export default function App() {
       {/* ═══════════════════════════════════════════
           5. TESTIMONIOS
       ═══════════════════════════════════════════ */}
-      <section className="py-24 md:py-32 px-6 md:px-12 lg:px-20 bg-card">
+      <section id="section-testimonials" className="py-24 md:py-32 px-6 md:px-12 lg:px-20 bg-card">
         <div className="max-w-xl mx-auto lg:max-w-4xl">
           <Label>They already did it</Label>
           <h2
@@ -393,7 +417,11 @@ export default function App() {
 
           <div className="grid md:grid-cols-2 gap-5">
             {testimonials.map((t, i) => (
-              <div key={i} className="bg-background border border-border p-8 flex flex-col">
+              <div 
+                key={i} 
+                className={`bg-background border border-border p-8 flex flex-col animate-fade-in-up ${visibleSections["section-testimonials"] ? "animate-fade-in-up" : ""}`}
+                style={{ animationDelay: `${i * 200}ms` }}
+              >
                 {/* Stars */}
                 <div className="flex gap-1 mb-6">
                   {Array.from({ length: 5 }).map((_, s) => (
@@ -600,7 +628,7 @@ export default function App() {
 
           {/* Price card */}
           <div className="inline-block w-full max-w-md mx-auto mb-10">
-            <div className="bg-card border border-border px-8 py-10 text-center">
+            <div className="bg-card border border-border px-8 py-10 text-center animate-fade-in-up animate-delay-200">
               <p
                 className="text-muted-foreground text-xs uppercase tracking-[0.18em] mb-5 font-semibold"
                 style={{ fontFamily: FONT_DISPLAY }}
