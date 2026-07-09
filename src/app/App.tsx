@@ -27,10 +27,12 @@ function CTAButton({
   children,
   size = "md",
   fullWidth = false,
+  className = "",
 }: {
   children: React.ReactNode;
   size?: "md" | "lg" | "xl";
   fullWidth?: boolean;
+  className?: string;
 }) {
   const sizes = {
     md: "py-4 px-8 text-lg",
@@ -221,7 +223,7 @@ export default function App() {
         <div className="relative z-10 max-w-xl mx-auto w-full lg:max-w-4xl">
           {/* Tag */}
           <div
-            className="inline-block mb-7 px-3 py-1 border border-primary/50 text-primary text-xs uppercase tracking-[0.18em] font-semibold animate-fade-in-up"
+            className="inline-block mb-7 px-3 py-1 border border-primary/50 text-primary text-xs uppercase tracking-[0.18em] font-semibold animate-fade-in-right"
             style={{ fontFamily: FONT_DISPLAY }}
           >
             Digital Guide · Work in Australia
@@ -229,7 +231,7 @@ export default function App() {
 
           {/* Headline */}
           <h1
-            className="font-black uppercase leading-[0.92] text-white mb-7 animate-fade-in-up animate-delay-150"
+            className="font-black uppercase leading-[0.92] text-white mb-7 animate-fade-in-right animate-delay-150"
             style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3.5rem, 14vw, 8rem)" }}
           >
             YOUR LIFE<br />
@@ -238,15 +240,15 @@ export default function App() {
           </h1>
 
           {/* Sub */}
-          <p className="text-white/75 mb-10 max-w-lg leading-relaxed animate-fade-in-up animate-delay-300" style={{ fontSize: "1.125rem" }}>
+          <p className="text-white/75 mb-10 max-w-lg leading-relaxed animate-fade-in-right animate-delay-300" style={{ fontSize: "1.125rem" }}>
             Work in mining and heavy machinery in Australia.{" "}
             <strong className="text-white">No university degree required.</strong> Salaries up to{" "}
             <strong className="text-primary">120,000 AUD</strong> per year.
           </p>
 
           {/* CTA row */}
-            <div className="flex flex-col sm:flex-row gap-5 items-start animate-fade-in-up animate-delay-500">
-              <CTAButton size="lg" className="animate-pulse hover:scale-105 transition-transform">GET THE GUIDE — €47</CTAButton>
+            <div className="flex flex-col sm:flex-row gap-5 items-start animate-fade-in-right animate-delay-500">
+              <CTAButton className="animate-pulse hover:scale-105 transition-transform">GET THE GUIDE — €47</CTAButton>
               <div className="flex items-center gap-2 text-white/45 text-sm self-center group cursor-default">
                 <Shield size={14} className="text-primary shrink-0 group-hover:scale-110 transition-transform" />
                 <span className="group-hover:text-white/70 transition-colors">Instant access · 30-day guarantee</span >
@@ -292,7 +294,7 @@ export default function App() {
 
           {/* Solution */}
            <div className="grid md:grid-cols-2 gap-10 items-center">
-             <div className="animate-fade-in-up">
+             <div className="animate-fade-in-right">
                <Label>The twist</Label>
                <h3
                  className="font-black uppercase leading-tight text-white mb-5"
@@ -306,7 +308,7 @@ export default function App() {
                  The Australian mining industry hires thousands of operators every year. They don't care if you have a master's degree. They care if you can run the machine and want to work.
                </p>
              </div>
-             <div className="relative overflow-hidden bg-secondary animate-fade-in-down">
+             <div className="relative overflow-hidden bg-secondary animate-fade-in-right">
                <img
                  src={IMG_OUTBACK}
                  alt="Open Australian landscape seen from the air"
@@ -325,7 +327,7 @@ export default function App() {
         <div className="max-w-xl mx-auto lg:max-w-4xl">
           <Label>Why it works</Label>
           <h2
-            className="font-black uppercase leading-tight text-white mb-14 animate-fade-in-up"
+            className="font-black uppercase leading-tight text-white mb-14 animate-fade-in-right"
             style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.2rem, 7vw, 3.5rem)" }}
           >
             What you get<br />with this guide
@@ -371,11 +373,11 @@ export default function App() {
             What you'll learn<br />in the guide
           </h2>
 
-          <div className="animate-fade-in-up animate-delay-100">
+          <div className="animate-fade-in-right animate-delay-100">
              {steps.map((s, i) => (
                <div
                  key={i}
-                 className="flex gap-6 md:gap-10 py-8 border-b border-border group last:border-0 animate-fade-in-up"
+                 className="flex gap-6 md:gap-10 py-8 border-b border-border group last:border-0 animate-fade-in-right"
                  style={{ animationDelay: `${i * 150}ms` }}
                >
                  <div
@@ -419,7 +421,7 @@ export default function App() {
             {testimonials.map((t, i) => (
               <div 
                 key={i} 
-                className={`bg-background border border-border p-8 flex flex-col animate-fade-in-up ${visibleSections["section-testimonials"] ? "animate-fade-in-up" : ""}`}
+                className={`bg-background border border-border p-8 flex flex-col animate-fade-in-right ${visibleSections["section-testimonials"] ? "animate-fade-in-right" : ""}`}
                 style={{ animationDelay: `${i * 200}ms` }}
               >
                 {/* Stars */}
