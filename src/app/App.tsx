@@ -216,7 +216,7 @@ export default function App() {
           <img
             src={IMG_HERO}
             alt="Yellow excavator in an open-pit mine, Australia"
-            className="w-full h-full object-cover opacity-35"
+            className="w-full h-full object-cover opacity-90"
           />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to top, #0A0A0A 30%, rgba(10,10,10,0.55) 70%, rgba(10,10,10,0.2) 100%)" }} />
         </div>
@@ -226,7 +226,7 @@ export default function App() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="inline-block mb-7 px-3 py-1 border border-primary/50 text-primary text-xs uppercase tracking-[0.18em] font-semibold"
             style={{ fontFamily: FONT_DISPLAY }}
@@ -238,7 +238,7 @@ export default function App() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
             className="font-black uppercase leading-[0.92] text-white mb-7"
             style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3.5rem, 14vw, 8rem)" }}
@@ -252,7 +252,7 @@ export default function App() {
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
             className="text-white/75 mb-10 max-w-lg leading-relaxed" style={{ fontSize: "1.125rem" }}>
             Work in mining and heavy machinery in Australia.{" "}
@@ -264,7 +264,7 @@ export default function App() {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
             className="flex flex-col sm:flex-row gap-5 items-start"
           >
@@ -287,7 +287,7 @@ export default function App() {
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="border-l-[3px] border-white/15 pl-7"
           >
@@ -309,7 +309,7 @@ export default function App() {
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
             className="bg-card border border-primary/25 p-8 md:p-12"
           >
@@ -329,7 +329,7 @@ export default function App() {
              <motion.div
                initial={{ opacity: 0, x: -50 }}
                whileInView={{ opacity: 1, x: 0 }}
-               viewport={{ once: true, amount: 0.2 }}
+               viewport={{ once: true, amount: 0.3 }}
                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
              >
                <Label>The twist</Label>
@@ -348,7 +348,7 @@ export default function App() {
              <motion.div 
                initial={{ opacity: 0, scale: 0.9 }}
                whileInView={{ opacity: 1, scale: 1 }}
-               viewport={{ once: true, amount: 0.2 }}
+               viewport={{ once: true, amount: 0.3 }}
                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
                className="relative overflow-hidden bg-secondary"
              >
@@ -372,7 +372,7 @@ export default function App() {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="font-black uppercase leading-tight text-white mb-14"
             style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.2rem, 7vw, 3.5rem)" }}
@@ -386,7 +386,7 @@ export default function App() {
                  key={i}
                  initial={{ opacity: 0, y: 30 }}
                  whileInView={{ opacity: 1, y: 0 }}
-                 viewport={{ once: true, amount: 0.2 }}
+                 viewport={{ once: true, amount: 0.3 }}
                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.1 }}
                  className="bg-background border border-border p-8 group hover:border-primary/40 transition-all duration-300"
                >
@@ -429,7 +429,7 @@ export default function App() {
                  key={i}
                  initial={{ opacity: 0, x: -30 }}
                  whileInView={{ opacity: 1, x: 0 }}
-                 viewport={{ once: true, amount: 0.2 }}
+                 viewport={{ once: true, amount: 0.3 }}
                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.1 }}
                  className="flex gap-6 md:gap-10 py-8 border-b border-border group last:border-0"
                >
@@ -554,7 +554,7 @@ export default function App() {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="font-black uppercase leading-tight text-[#0A0A0A] mb-14"
             style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.2rem, 7vw, 3.5rem)" }}
@@ -568,7 +568,7 @@ export default function App() {
                 key={i}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.1 }}
                 className="py-8 border-b border-[#0A0A0A]/15 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 last:border-0"
               >
@@ -605,7 +605,7 @@ export default function App() {
           </div>
 
           <p className="text-[#0A0A0A]/40 text-xs mt-10">
-            * Source: SEEK Australia / Indeed AU · 2024 data. Does not include bonuses or overtime.
+            * Source: SEEK Australia / Indeed AU · 2026 data. Does not include bonuses or overtime.
           </p>
         </div>
       </section>
@@ -619,7 +619,7 @@ export default function App() {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="font-black uppercase leading-tight text-white mb-14"
             style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.2rem, 7vw, 3.5rem)" }}
@@ -632,7 +632,7 @@ export default function App() {
             <motion.div 
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
               className="bg-card border border-border p-8"
             >
@@ -656,7 +656,7 @@ export default function App() {
             <motion.div 
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
               className="bg-card border border-primary/35 p-8"
             >
@@ -698,7 +698,7 @@ export default function App() {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="font-black uppercase leading-[0.92] text-white mb-7"
             style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3rem, 12vw, 7rem)" }}
@@ -711,7 +711,7 @@ export default function App() {
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
             className="text-white/55 mb-14 max-w-md mx-auto leading-relaxed" style={{ fontSize: "1.0625rem" }}>
             The guide you need to go from Germany to Australia with a mining job. The whole process, explained straight.
@@ -721,7 +721,7 @@ export default function App() {
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
             className="inline-block w-full max-w-md mx-auto mb-10"
           >
