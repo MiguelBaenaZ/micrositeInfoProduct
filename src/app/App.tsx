@@ -207,7 +207,7 @@ export default function App() {
       </div>
 
       {/* ═══════════════════════════════════════════
-          1. HERO
+          1. HERO testeando
       ═══════════════════════════════════════════ */}
       <section className="relative min-h-screen flex flex-col justify-end pb-16 md:pb-24 px-6 md:px-12 lg:px-20">
         {/* Background */}
