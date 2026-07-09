@@ -3,6 +3,7 @@ import {
   Shield, Clock, Award, Globe, Truck, DollarSign,
   BookOpen, FileText, Plane, Building2, Star, Check, X
 } from "lucide-react";
+import { motion, useAnimation } from "framer-motion";
 
 const FONT_DISPLAY = "'Barlow Condensed', sans-serif";
 const FONT_BODY = "'DM Sans', sans-serif";
@@ -207,7 +208,7 @@ export default function App() {
       </div>
 
       {/* ═══════════════════════════════════════════
-          1. HERO testeando
+          1. HERO
       ═══════════════════════════════════════════ */}
       <section className="relative min-h-screen flex flex-col justify-end pb-16 md:pb-24 px-6 md:px-12 lg:px-20">
         {/* Background */}
@@ -222,38 +223,57 @@ export default function App() {
 
         <div className="relative z-10 max-w-xl mx-auto w-full lg:max-w-4xl">
           {/* Tag */}
-          <div
-            className="inline-block mb-7 px-3 py-1 border border-primary/50 text-primary text-xs uppercase tracking-[0.18em] font-semibold animate-fade-in-right"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="inline-block mb-7 px-3 py-1 border border-primary/50 text-primary text-xs uppercase tracking-[0.18em] font-semibold"
             style={{ fontFamily: FONT_DISPLAY }}
           >
             Digital Guide · Work in Australia
-          </div>
+          </motion.div>
 
           {/* Headline */}
-          <h1
-            className="font-black uppercase leading-[0.92] text-white mb-7 animate-fade-in-right animate-delay-150"
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+            className="font-black uppercase leading-[0.92] text-white mb-7"
             style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3.5rem, 14vw, 8rem)" }}
           >
             YOUR LIFE<br />
             <span className="text-primary">IS WORTH</span><br />
             MORE THAN THIS.
-          </h1>
+          </motion.h1>
 
           {/* Sub */}
-          <p className="text-white/75 mb-10 max-w-lg leading-relaxed animate-fade-in-right animate-delay-300" style={{ fontSize: "1.125rem" }}>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
+            className="text-white/75 mb-10 max-w-lg leading-relaxed" style={{ fontSize: "1.125rem" }}>
             Work in mining and heavy machinery in Australia.{" "}
             <strong className="text-white">No university degree required.</strong> Salaries up to{" "}
             <strong className="text-primary">120,000 AUD</strong> per year.
-          </p>
+          </motion.p>
 
           {/* CTA row */}
-            <div className="flex flex-col sm:flex-row gap-5 items-start animate-fade-in-right animate-delay-500">
-              <CTAButton className="animate-pulse hover:scale-105 transition-transform">GET THE GUIDE — €47</CTAButton>
-              <div className="flex items-center gap-2 text-white/45 text-sm self-center group cursor-default">
-                <Shield size={14} className="text-primary shrink-0 group-hover:scale-110 transition-transform" />
-                <span className="group-hover:text-white/70 transition-colors">Instant access · 30-day guarantee</span >
-              </div>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
+            className="flex flex-col sm:flex-row gap-5 items-start"
+          >
+            <CTAButton className="animate-pulse hover:scale-105 transition-transform">GET THE GUIDE — €47</CTAButton>
+            <div className="flex items-center gap-2 text-white/45 text-sm self-center group cursor-default">
+              <Shield size={14} className="text-primary shrink-0 group-hover:scale-110 transition-transform" />
+              <span className="group-hover:text-white/70 transition-colors">Instant access · 30-day guarantee</span >
             </div>
+          </motion.div>
         </div>
       </section>
 
@@ -264,7 +284,13 @@ export default function App() {
         <div className="max-w-xl mx-auto lg:max-w-4xl space-y-16">
 
           {/* Pain */}
-          <div className="border-l-[3px] border-white/15 pl-7">
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="border-l-[3px] border-white/15 pl-7"
+          >
             <Label>The reality</Label>
             <h2
               className="font-black uppercase leading-tight text-white mb-6"
@@ -277,10 +303,16 @@ export default function App() {
               <p>You don't have a university degree. And in Germany, that feels like an unbreakable glass ceiling.</p>
               <p className="text-white/90 font-medium">But there's something nobody is telling you.</p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Break question */}
-          <div className="bg-card border border-primary/25 p-8 md:p-12">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+            className="bg-card border border-primary/25 p-8 md:p-12"
+          >
             <Label>The question that changes everything</Label>
             <h2
               className="font-black uppercase leading-tight text-white"
@@ -290,11 +322,16 @@ export default function App() {
               <span className="text-primary">Australia</span><br />
               earning twice as much?
             </h2>
-          </div>
+          </motion.div>
 
           {/* Solution */}
            <div className="grid md:grid-cols-2 gap-10 items-center">
-             <div className="animate-fade-in-right">
+             <motion.div
+               initial={{ opacity: 0, x: -50 }}
+               whileInView={{ opacity: 1, x: 0 }}
+               viewport={{ once: true, amount: 0.2 }}
+               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
+             >
                <Label>The twist</Label>
                <h3
                  className="font-black uppercase leading-tight text-white mb-5"
@@ -307,15 +344,21 @@ export default function App() {
                <p className="text-white/65 leading-relaxed" style={{ fontSize: "1.0625rem" }}>
                  The Australian mining industry hires thousands of operators every year. They don't care if you have a master's degree. They care if you can run the machine and want to work.
                </p>
-             </div>
-             <div className="relative overflow-hidden bg-secondary animate-fade-in-right">
+             </motion.div>
+             <motion.div 
+               initial={{ opacity: 0, scale: 0.9 }}
+               whileInView={{ opacity: 1, scale: 1 }}
+               viewport={{ once: true, amount: 0.2 }}
+               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
+               className="relative overflow-hidden bg-secondary"
+             >
                <img
                  src={IMG_OUTBACK}
                  alt="Open Australian landscape seen from the air"
                  className="w-full h-60 md:h-72 object-cover hover:scale-110 transition-transform duration-700"
                />
                <div className="absolute inset-0 bg-primary/10" />
-             </div>
+             </motion.div>
            </div>
         </div>
       </section>
@@ -326,19 +369,26 @@ export default function App() {
       <section className="py-24 md:py-32 px-6 md:px-12 lg:px-20 bg-card">
         <div className="max-w-xl mx-auto lg:max-w-4xl">
           <Label>Why it works</Label>
-          <h2
-            className="font-black uppercase leading-tight text-white mb-14 animate-fade-in-right"
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="font-black uppercase leading-tight text-white mb-14"
             style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.2rem, 7vw, 3.5rem)" }}
           >
             What you get<br />with this guide
-          </h2>
+          </motion.h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
              {benefits.map((b, i) => (
-               <div
+               <motion.div
                  key={i}
-                 className="bg-background border border-border p-8 group hover:border-primary/40 transition-all duration-300 animate-scale-in"
-                 style={{ animationDelay: `${i * 100}ms` }}
+                 initial={{ opacity: 0, y: 30 }}
+                 whileInView={{ opacity: 1, y: 0 }}
+                 viewport={{ once: true, amount: 0.2 }}
+                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.1 }}
+                 className="bg-background border border-border p-8 group hover:border-primary/40 transition-all duration-300"
                >
                  <div className="text-primary mb-5 group-hover:scale-110 transition-transform">{b.icon}</div>
                  <p
@@ -354,7 +404,7 @@ export default function App() {
                    {b.figure}
                  </p>
                  <p className="text-white/55 leading-relaxed text-[0.9375rem]">{b.desc}</p>
-               </div>
+               </motion.div>
              ))}
           </div>
         </div>
@@ -373,12 +423,15 @@ export default function App() {
             What you'll learn<br />in the guide
           </h2>
 
-          <div className="animate-fade-in-right animate-delay-100">
+          <div>
              {steps.map((s, i) => (
-               <div
+               <motion.div
                  key={i}
-                 className="flex gap-6 md:gap-10 py-8 border-b border-border group last:border-0 animate-fade-in-right"
-                 style={{ animationDelay: `${i * 150}ms` }}
+                 initial={{ opacity: 0, x: -30 }}
+                 whileInView={{ opacity: 1, x: 0 }}
+                 viewport={{ once: true, amount: 0.2 }}
+                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.1 }}
+                 className="flex gap-6 md:gap-10 py-8 border-b border-border group last:border-0"
                >
                  <div
                    className="text-[3.5rem] md:text-[4.5rem] font-black leading-none text-white/8 shrink-0 w-14 md:w-20 group-hover:text-primary transition-colors duration-300 select-none"
@@ -398,7 +451,7 @@ export default function App() {
                    </div>
                    <p className="text-white/55 leading-relaxed text-[0.9375rem]">{s.desc}</p>
                  </div>
-               </div>
+               </motion.div>
              ))}
           </div>
         </div>
@@ -419,10 +472,13 @@ export default function App() {
 
           <div className="grid md:grid-cols-2 gap-5">
             {testimonials.map((t, i) => (
-              <div 
+              <motion.div 
                 key={i} 
-                className={`bg-background border border-border p-8 flex flex-col animate-fade-in-right ${visibleSections["section-testimonials"] ? "animate-fade-in-right" : ""}`}
-                style={{ animationDelay: `${i * 200}ms` }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.2 }}
+                className="bg-background border border-border p-8 flex flex-col"
               >
                 {/* Stars */}
                 <div className="flex gap-1 mb-6">
@@ -478,7 +534,7 @@ export default function App() {
                     {t.role}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -495,17 +551,25 @@ export default function App() {
           >
             What Australia pays
           </p>
-          <h2
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="font-black uppercase leading-tight text-[#0A0A0A] mb-14"
             style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.2rem, 7vw, 3.5rem)" }}
           >
             Real salaries.<br />No fluff.
-          </h2>
+          </motion.h2>
 
           <div>
             {salaries.map((s, i) => (
-              <div
+              <motion.div
                 key={i}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.1 }}
                 className="py-8 border-b border-[#0A0A0A]/15 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 last:border-0"
               >
                 <div>
@@ -536,7 +600,7 @@ export default function App() {
                     AUD / year
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
@@ -552,16 +616,26 @@ export default function App() {
       <section className="py-24 md:py-32 px-6 md:px-12 lg:px-20 bg-background">
         <div className="max-w-xl mx-auto lg:max-w-4xl">
           <Label>Clear the doubts</Label>
-          <h2
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="font-black uppercase leading-tight text-white mb-14"
             style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.2rem, 7vw, 3.5rem)" }}
           >
             The truth about<br />the requirements
-          </h2>
+          </motion.h2>
 
           <div className="grid md:grid-cols-2 gap-5">
             {/* No necesitas */}
-            <div className="bg-card border border-border p-8">
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+              className="bg-card border border-border p-8"
+            >
               <p
                 className="text-white/40 text-xs uppercase tracking-[0.18em] mb-7 font-semibold"
                 style={{ fontFamily: FONT_DISPLAY }}
@@ -576,10 +650,16 @@ export default function App() {
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
             {/* Sí necesitas */}
-            <div className="bg-card border border-primary/35 p-8">
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
+              className="bg-card border border-primary/35 p-8"
+            >
               <p
                 className="text-primary text-xs uppercase tracking-[0.18em] mb-7 font-semibold"
                 style={{ fontFamily: FONT_DISPLAY }}
@@ -594,7 +674,7 @@ export default function App() {
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -615,22 +695,37 @@ export default function App() {
 
         <div className="relative z-10 max-w-xl mx-auto lg:max-w-4xl text-center">
           <Label>The time is now</Label>
-          <h2
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="font-black uppercase leading-[0.92] text-white mb-7"
             style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3rem, 12vw, 7rem)" }}
           >
             ONE STEP.<br />
             <span className="text-primary">ONE DECISION.</span><br />
             ONE DIFFERENT YEAR.
-          </h2>
+          </motion.h2>
 
-          <p className="text-white/55 mb-14 max-w-md mx-auto leading-relaxed" style={{ fontSize: "1.0625rem" }}>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+            className="text-white/55 mb-14 max-w-md mx-auto leading-relaxed" style={{ fontSize: "1.0625rem" }}>
             The guide you need to go from Germany to Australia with a mining job. The whole process, explained straight.
-          </p>
+          </motion.p>
 
           {/* Price card */}
-          <div className="inline-block w-full max-w-md mx-auto mb-10">
-            <div className="bg-card border border-border px-8 py-10 text-center animate-fade-in-up animate-delay-200">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
+            className="inline-block w-full max-w-md mx-auto mb-10"
+          >
+            <div className="bg-card border border-border px-8 py-10 text-center">
               <p
                 className="text-muted-foreground text-xs uppercase tracking-[0.18em] mb-5 font-semibold"
                 style={{ fontFamily: FONT_DISPLAY }}
@@ -676,11 +771,15 @@ export default function App() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <p className="text-white/25 text-sm max-w-xs mx-auto">
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="text-white/25 text-sm max-w-xs mx-auto">
             If you're not satisfied within 30 days, we'll refund you in full. No questions asked.
-          </p>
+          </motion.p>
         </div>
       </section>
 
