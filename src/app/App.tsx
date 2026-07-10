@@ -307,7 +307,7 @@ export default function App() {
             className="inline-block mb-7 px-3 py-1 border border-primary/50 text-primary text-xs uppercase tracking-[0.18em] font-semibold"
             style={{ fontFamily: FONT_DISPLAY }}
           >
-            Digital Guide · Work in Australia
+            <GlowText>Digital Guide · Work in Australia</GlowText>
           </motion.div>
 
           {/* Headline */}
@@ -764,7 +764,7 @@ export default function App() {
           <img
             src={IMG_MINING}
             alt="Large-scale mining operation in Australia"
-            className="w-full h-full object-cover opacity-20"
+            className="w-full h-full object-cover opacity-40"
           />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, #0A0A0A, rgba(10,10,10,0.7) 40%, rgba(10,10,10,0.85) 100%)" }} />
         </div>
@@ -895,7 +895,7 @@ export default function App() {
 
           <div className="pt-8 border-t border-border flex flex-col md:flex-row md:items-center md:justify-between gap-3">
             <p className="text-muted-foreground text-xs">
-              © 2025 Work in Australia. All rights reserved.
+              © 2026 Work in Australia. All rights reserved.
             </p>
             <p className="text-muted-foreground text-xs">
               Sold via Hotmart. Individual results may vary.
