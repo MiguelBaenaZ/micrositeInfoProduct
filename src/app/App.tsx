@@ -3,7 +3,7 @@ import {
   Shield, Clock, Award, Globe, Truck, DollarSign,
   BookOpen, FileText, Plane, Building2, Star, Check, X
 } from "lucide-react";
-import { motion, useAnimation } from "framer-motion";
+import { motion, useAnimation, useMotionValue, useTransform, animate } from "framer-motion";
 
 const FONT_DISPLAY = "'Barlow Condensed', sans-serif";
 const FONT_BODY = "'DM Sans', sans-serif";
@@ -12,6 +12,60 @@ const IMG_HERO = "https://images.unsplash.com/photo-1680463990599-9d318aaecf71?w
 const IMG_MINING = "https://images.unsplash.com/photo-1523848309072-c199db53f137?w=1400&h=800&fit=crop&auto=format";
 const IMG_OUTBACK = "https://images.unsplash.com/photo-1587882740564-e0380e0dc12a?w=1200&h=700&fit=crop&auto=format";
 const IMG_WORKER = "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&h=1000&fit=crop&auto=format";
+
+interface PriceRevealProps {
+  from?: number;
+  to?: number;
+}
+
+function PriceReveal({ from = 97, to = 47 }: PriceRevealProps) {
+  const [displayValue, setDisplayValue] = useState(from);
+  const [isDone, setIsDone] = useState(false);
+
+  useEffect(() => {
+    const controls = animate(from, to, {
+      duration: 1.2,
+      ease: "easeIn",
+      onUpdate: (value) => setDisplayValue(Math.round(value)),
+      onComplete: () => setIsDone(true),
+    });
+
+    return () => controls.stop();
+  }, [from, to]);
+
+  return (
+    <div className="flex items-center gap-4">
+      {/* Precio tachado, aparece cuando termina la cuenta */}
+      <motion.span
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isDone ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
+        className="text-white/25 font-black line-through leading-none"
+        style={{ fontFamily: FONT_DISPLAY, fontSize: "2rem" }}
+      >
+        €{from}
+      </motion.span>
+
+      {/* Precio animado con latido al finalizar */}
+      <motion.span
+        animate={
+          isDone
+            ? { scale: [1, 1.15, 1] }
+            : {}
+        }
+        transition={
+          isDone
+            ? { duration: 0.6, ease: "easeInOut" }
+            : {}
+        }
+        className="text-white font-black leading-none"
+        style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(4rem, 12vw, 6rem)" }}
+      >
+        €{displayValue}
+      </motion.span>
+    </div>
+  );
+}
 
 function Label({ children }: { children: React.ReactNode }) {
   return (
@@ -50,6 +104,28 @@ function CTAButton({
     >
       {children}
     </a>
+  );
+}
+
+function GlowText({ children }: {children: React.ReactNode}) {
+  return (
+    <motion.span
+      className="text-yellow-400"
+      animate={{
+        textShadow: [
+          "0 0 10px rgba(250, 204, 21, 0.4), 0 0 20px rgba(250, 204, 21, 0.2)",
+          "0 0 20px rgba(250, 204, 21, 0.8), 0 0 40px rgba(250, 204, 21, 0.4)",
+          "0 0 10px rgba(250, 204, 21, 0.4), 0 0 20px rgba(250, 204, 21, 0.2)",
+        ],
+      }}
+      transition={{
+        duration: 2.5,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+    >
+      {children}
+    </motion.span>
   );
 }
 
@@ -244,7 +320,7 @@ export default function App() {
             style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3.5rem, 14vw, 8rem)" }}
           >
             YOUR LIFE<br />
-            <span className="text-primary">IS WORTH</span><br />
+            <GlowText><span className="text-primary">IS WORTH</span></GlowText><br />
             MORE THAN THIS.
           </motion.h1>
 
@@ -319,7 +395,7 @@ export default function App() {
               style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(2.4rem, 8vw, 4.5rem)" }}
             >
               What if in 6 months<br />you were already in{" "}
-              <span className="text-primary">Australia</span><br />
+              <GlowText><span className="text-primary">Australia</span></GlowText><br />
               earning twice as much?
             </h2>
           </motion.div>
@@ -704,7 +780,7 @@ export default function App() {
             style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(3rem, 12vw, 7rem)" }}
           >
             ONE STEP.<br />
-            <span className="text-primary">ONE DECISION.</span><br />
+            <GlowText><span className="text-primary">ONE DECISION.</span></GlowText><br />
             ONE DIFFERENT YEAR.
           </motion.h2>
 
@@ -733,8 +809,8 @@ export default function App() {
                 Full access · One-time payment
               </p>
 
-              <div className="flex items-end justify-center gap-4 mb-2">
-                <span
+              <div className="flex items-end justify-center gap-4 mb-2" style={{ fontFamily: FONT_DISPLAY }}>
+                {/* <span
                   className="text-white/25 font-black line-through leading-none"
                   style={{ fontFamily: FONT_DISPLAY, fontSize: "2rem" }}
                 >
@@ -745,7 +821,8 @@ export default function App() {
                   style={{ fontFamily: FONT_DISPLAY, fontSize: "clamp(4rem, 12vw, 6rem)" }}
                 >
                   €47
-                </span>
+                </span> */}
+                <PriceReveal></PriceReveal>
               </div>
               <p className="text-primary text-sm font-semibold mb-8">Launch price</p>
 
