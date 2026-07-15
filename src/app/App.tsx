@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Shield, Clock, Award, Globe, Truck, DollarSign,
   BookOpen, FileText, Plane, Building2, Star, Check, X
 } from "lucide-react";
-import { motion, useAnimation, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion, useInView, animate } from "framer-motion";
 
 const FONT_DISPLAY = "'Barlow Condensed', sans-serif";
 const FONT_BODY = "'DM Sans', sans-serif";
@@ -21,8 +21,12 @@ interface PriceRevealProps {
 function PriceReveal({ from = 97, to = 47 }: PriceRevealProps) {
   const [displayValue, setDisplayValue] = useState(from);
   const [isDone, setIsDone] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   useEffect(() => {
+    if (!isInView) return;
+
     const controls = animate(from, to, {
       duration: 1.2,
       ease: "easeIn",
@@ -31,10 +35,10 @@ function PriceReveal({ from = 97, to = 47 }: PriceRevealProps) {
     });
 
     return () => controls.stop();
-  }, [from, to]);
+  }, [isInView, from, to]);
 
   return (
-    <div className="flex items-center gap-4">
+    <div ref={ref} className="flex items-center gap-4">
       {/* Precio tachado, aparece cuando termina la cuenta */}
       <motion.span
         initial={{ opacity: 0 }}
